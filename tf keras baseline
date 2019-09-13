@@ -1,8 +1,29 @@
-import numpy as no
+import numpy as np
 import pandas as pd
 import tensorflow as tf
 
 from tensorflow import feature_column
 from tesnorflow.keras import layers
 from sklearn.model_selection import train_test_split
+
+df_train = pd.read_csv('C:/Users/jeffg/Documents/Kaggle/titanic/train.csv')
+df_test = pd.read_csv('C:/Users/jeffg/Documents/Kaggle/titanic/test.csv')
+
+df_train, df_val = train_test_split(df_train, test_size=0.2)
+
+## from https://www.tensorflow.org/beta/tutorials/keras/feature_columns#create_compile_and_train_the_model
+# A utility method to create a tf.data dataset from a Pandas Dataframe
+def df_to_dataset(dataframe, shuffle=True, batch_size=32):
+  dataframe = dataframe.copy()
+  labels = dataframe.pop('target')
+  ds = tf.data.Dataset.from_tensor_slices((dict(dataframe), labels))
+  if shuffle:
+    ds = ds.shuffle(buffer_size=len(dataframe))
+  ds = ds.batch(batch_size)
+  return ds
+
+batch_size = 10
+train_ds = df_to_dataset(df_train, batch_size=batch_size)
+val_ds = df_to_dataset(df_val, shuffle=False, batch_size=batch_size)
+test_ds = df_to_dataset(df_test, shuffle=False, batch_size=batch_size)
 
