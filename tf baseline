@@ -22,6 +22,20 @@ df_test_base = pd.read_csv('C:/Users/jeffg/Documents/Kaggle/titanic/test.csv')
 
 Pclass = tf.feature_column.categorical_column_with_identity("Pclass", num_buckets = 3)
 
+Name = tf.feature_column.
+
 Sex = tf.feature_column.categorical_column_with_vocabulary_list("Sex,["female","male")
+
+Age = tf.feature_column.numeric_column("Age")
+
+SinSp = tf.feature_column.numeric_column("SinSp")
+
+Parch = tf.feature_column.numeric_column("Parch")
+
+Ticket = tf.feature_column.categorical_column_with_hash_bucket("Ticket", hash_bucket_size = 400)
+
+Fare = tf.feature_column.numeric_column("Fare")
+
+Cabin = tf.feature_column.categorical_column_with_has_bucket("Cabin", has_bucket_size = 20)
 
 Embarked = tf.feature_column.categorical_column_with_vocabulary_list("Embarked",["C","Q","S"]
