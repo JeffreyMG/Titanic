@@ -34,7 +34,7 @@ Parch = tf.feature_column.numeric_column("Parch")
 
 Ticket = tf.feature_column.categorical_column_with_hash_bucket("Ticket", hash_bucket_size = 400)
 
-Fare = tf.feature_column.numeric_column("Fare")
+Fare = tf.feature_column.numeric_column("Fare") 
 
 Cabin = tf.feature_column.categorical_column_with_has_bucket("Cabin", has_bucket_size = 20)
 
