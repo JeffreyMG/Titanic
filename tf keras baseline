@@ -9,6 +9,21 @@ from sklearn.model_selection import train_test_split
 df_train = pd.read_csv('C:/Users/jeffg/Documents/Kaggle/titanic/train.csv')
 df_test = pd.read_csv('C:/Users/jeffg/Documents/Kaggle/titanic/test.csv')
 
+##datacleaning
+
+df_train['Age'].fillna(0, inplace=True)
+df_train['Cabin'].fillna('U0', inplace=True)
+df_train['Embarked'].fillna('U', inplace=True)
+df_train['Cabin1'], df_train['Cabin2'] = df_train['Cabin'].str.split(' ', 1).str
+df_train['Cabin2'].fillna(0, inplace=True)
+df_train['CabinX'] = df_train['Cabin1'].astype(str).str[0]
+df_train['CabinY' = ]
+
+
+df_test['Age'].fillna(0, inplace=True)
+df_test['Cabin'].fillna('U0', inplace=True)
+df_test['Embarked'].fillna('U', inplace=True)
+
 df_train, df_val = train_test_split(df_train, test_size=0.2)
 
 ## from https://www.tensorflow.org/beta/tutorials/keras/feature_columns#create_compile_and_train_the_model
